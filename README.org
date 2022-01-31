@@ -1,0 +1,23 @@
+* Spring 2022 235 Assignments
+
+* Last name:
+
+* First name:
+
+* GitHub username:
+
+* Notes:
+
+
+
+* General instructions:
+- Fill in your name and GitHub username on top.
+- Small assignments should be added to the *assignments*
+  directory. Each individual assignment will specify what files to
+  create and where to place them.
+- Projects will be in their own folders. Each assigned project will
+  include the specific details required.
+
+  
+
+

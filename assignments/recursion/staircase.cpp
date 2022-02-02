@@ -26,11 +26,11 @@ n = 5: 13 solutions
 3 2
 */
 
-// n = 1, 1 solu 0
-// n = 2, 2 solu 1 
-// n = 3, 4 solu 2 
-// n = 4, 7 solu 3 
-// n = 5, 13 solu 4
+// n = 1, 1 solu 
+// n = 2, 2 solu 
+// n = 3, 4 solu 
+// n = 4, 7 solu 
+// n = 5, 13 solu 
 // n = 6, 
 // n = 7, 44 solu
 
@@ -40,14 +40,14 @@ int stepPerms(int n) { // n is the # of steps
     } else if(n < 0) { 
         return 0; 
     } else { 
-        return 
+        return stepPerms(n - 1) + stepPerms(n - 2) + stepPerms(n - 3);
         // Unsure how to start, we need to test all three at once, since we cannot check that one number, 1, 2, 3 has already been tested. 
         // 
     }
 } 
 
 int main() {
-    std::cout << stepPerms(5) << std::endl;
+    std::cout << stepPerms(3) << std::endl;
 
     return 0;
 }

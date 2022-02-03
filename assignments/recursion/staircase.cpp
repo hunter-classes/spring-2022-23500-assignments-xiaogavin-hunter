@@ -48,16 +48,19 @@ int stepPerms(int n) { // n is the # of steps
     if(n == 0) { 
         return 1;
     }
-
     
-    int w = 0;
-    for (int i = 3; i >= 1; i--){
-        int x = n - i;
-        if (x >= 0)
-            w = w + stepPerms(x);
+    if(solu[n] != 0) { 
+        return solu[n];
+    } else { 
+        int w = 0;
+        for (int i = 3; i >= 1; i--){
+            int x = n - i;
+            if (x >= 0)
+                w = w + stepPerms(x);
         }
-
-    return w;
+        solu[n] = w;
+        return w;
+    }
 } 
 
 int main() {
@@ -66,4 +69,4 @@ int main() {
     }
 
     return 0;
-}
+}   

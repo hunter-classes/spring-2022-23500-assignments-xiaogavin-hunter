@@ -34,20 +34,36 @@ n = 5: 13 solutions
 // n = 6, 
 // n = 7, 44 solu
 
+int solu[1000]; 
+
 int stepPerms(int n) { // n is the # of steps 
-    if(n == 1) { 
-        return 1; 
-    } else if(n < 0) { 
-        return 0; 
-    } else { 
-        return stepPerms(n - 1) + stepPerms(n - 2) + stepPerms(n - 3);
-        // Unsure how to start, we need to test all three at once, since we cannot check that one number, 1, 2, 3 has already been tested. 
-        // 
+    // if(n == 1) { 
+    //     return 1; 
+    // } else if(n == 2) { 
+    //     return 1 + stepPerms(n - 1);
+    // } else if (n == 3) { 
+    //     return 1 + stepPerms(n - 2) + stepPerms(n - 1); 
+    // }
+
+    if(n == 0) { 
+        return 1;
     }
+
+    
+    int w = 0;
+    for (int i = 3; i >= 1; i--){
+        int x = n - i;
+        if (x >= 0)
+            w = w + stepPerms(x);
+        }
+
+    return w;
 } 
 
 int main() {
-    std::cout << stepPerms(3) << std::endl;
+    for(int i = 0; i < 100; i++) { 
+        std::cout << stepPerms(i) << std::endl;
+    }
 
     return 0;
 }

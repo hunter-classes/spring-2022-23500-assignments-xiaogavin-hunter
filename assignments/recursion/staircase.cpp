@@ -64,8 +64,8 @@ int stepPerms(int n) { // n is the # of steps
 } 
 
 int main() {
-    for(int i = 0; i < 100; i++) { 
-        std::cout << stepPerms(i) << std::endl;
+    for(int i = 0; i <= 100; i++) { 
+        std::cout << i << ": " << stepPerms(i) << std::endl;
     }
 
     return 0;

@@ -6,43 +6,78 @@
 char me = 'Z';
 char wall = ' ';
 char goal = '$';
+char path = '#';
+char visited = '.';
 
 int load_maze(std::string filename, std::string *maze)
 {
-	std::ifstream infile(filename);
-	int i = 0;
-	while (std::getline(infile, maze[i]))
-	{
-		i++;
-	}
-	return i;
+    std::ifstream infile(filename);
+    int i = 0;
+    while (std::getline(infile, maze[i]))
+    {
+        i++;
+    }
+    return i;
 }
 
 void print_maze(std::string maze[], int lines)
 {
-	for (int i = 0; i < lines; i++)
-	{
-		std::cout << maze[i] << "\n";
-	}
+    std::cout << "[0;0H\n";
+    for (int i = 0; i < lines; i++)
+    {
+        std::cout << maze[i] << "\n";
+    }
 }
 
-void solve(std::string maze, int lines, int row, int col)
+void solve(std::string maze[], int lines, int row, int col, bool &solved)
 {
-	// check base cases
-	// check if we are at the exit
+    // check the base cases
 
-	// add at row, rol
+    // base case 1are we at the exit?
+    if (maze[row][col] == goal)
+    {
+        solved = true;
+        return;
+    }
 
-	// recusively try to solve by stepping once
-	// in each of the four directions
+    if (maze[row][col] == wall ||
+        maze[row][col] == me || 
+        maze[row][col] == visited)
+    {
+        return;
+    }
+
+    // add me at row col to the maze
+    maze[row][col] = me;
+    usleep(80000);
+    print_maze(maze, lines);
+
+    // recusively try to solve by stepping once
+    // in each of the four drections.
+    if (!solved)
+        solve(maze, lines, row - 1, col, solved);
+    if (!solved)
+        solve(maze, lines, row + 1, col, solved);
+    if (!solved)
+        solve(maze, lines, row, col - 1, solved);
+    if (!solved)
+        solve(maze, lines, row, col + 1, solved);
+
+    if (!solved)
+        maze[row][col] = visited;
 }
 
 int main()
 {
-	std::string maze[27];
-	int lines;
-	lines = load_maze("maze.dat", maze);
-	print_maze(maze, lines);
+    std::string maze[27];
+    int lines;
+    lines = load_maze("maze.dat", maze);
 
-	return 0;
+    std::cout << "[2J;\n";
+    print_maze(maze, lines);
+    bool solved = false;
+    solve(maze, lines, 2, 2, solved);
+    print_maze(maze, lines);
+    std::cout << "Done!\n";
+    return 0;
 }

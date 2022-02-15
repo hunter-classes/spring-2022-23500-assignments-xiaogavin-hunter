@@ -33,9 +33,21 @@ void print_board(char board[11][11], int size) {
     }
 }
 
+void solve(char board[11][11], int row, int col, int size) { 
+    if(board[row][col] == wall || board[row][col] == visited || board[row][col] == knight) { 
+        return;
+    }
+
+    board[row][col] = knight; 
+    print_board(board, size);
+
+    solve(board, row + 1, col + 2, size); 
+}
+
 int main() { 
     char board[11][11]; 
     int size = input_board("board.dat", board);
     print_board(board, size); 
+    solve(board, 2, 2, size);
     return 0; 
 }

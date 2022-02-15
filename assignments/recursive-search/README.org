@@ -1,0 +1,16 @@
+Knight movement: 
+.8.1.
+7...2
+..N..
+6...3
+.5.4.
+
+Notes: 
+1: 2 up   1 right (row - 2, col + 1)
+2: 1 up   2 right (row - 1, col + 2)
+3: 1 down 2 right (row + 1, col + 2)
+4: 2 down 1 right (row + 2, col + 1)
+5: 2 down 1 left  (row + 2, col - 1)
+6: 1 down 2 left  (row + 1, col - 2)
+7: 1 up   2 left  (row - 1, col - 2)
+8: 2 up   1 left  (row - 2, col - 1)

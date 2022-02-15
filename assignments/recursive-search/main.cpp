@@ -6,7 +6,7 @@
 char knight = 'N';
 char wall = '#';
 char empty = ' ';
-char visited = '.';
+// char visited = '.';
 
 int input_board(std::string filename, char board[11][11]) { 
     std::fstream filein(filename);
@@ -23,7 +23,8 @@ int input_board(std::string filename, char board[11][11]) {
     return counter;
 }
 
-void print_board(char board[11][11], int size) { 
+void print_board(char board[11][11], int size) {
+    std::cout << "[0;0H\n"; 
     for(int i = 0; i < size; i++) { 
         for(int j = 0; j < size; j++) { 
             std::cout << board[i][j];
@@ -34,14 +35,22 @@ void print_board(char board[11][11], int size) {
 }
 
 void solve(char board[11][11], int row, int col, int size) { 
-    if(board[row][col] == wall || board[row][col] == visited || board[row][col] == knight) { 
+    if(board[row][col] == wall || board[row][col] == knight) { 
         return;
     }
 
     board[row][col] = knight; 
+    usleep(80000);
     print_board(board, size);
 
-    solve(board, row + 1, col + 2, size); 
+    solve(board, row - 2, col + 1, size); 
+    solve(board, row - 1, col + 2, size);
+    solve(board, row + 1, col + 2, size);
+    solve(board, row + 2, col + 1, size);
+    solve(board, row + 2, col - 1, size);
+    solve(board, row + 1, col - 2, size);
+    solve(board, row - 1, col - 2, size);
+    solve(board, row - 2, col - 1, size);
 }
 
 int main() { 

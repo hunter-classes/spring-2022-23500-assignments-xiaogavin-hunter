@@ -58,9 +58,10 @@ void List::remove(int location) {
         return;
     }
 
-    Node *temp = nullptr; 
+    // Node *temp = nullptr; 
     Node *walker = head; 
     int counter = 0;
+    Node *temp_node;
 
     // Node *new_node = new Node(data); 
     // insert new node 
@@ -69,17 +70,16 @@ void List::remove(int location) {
     // head = new_node;
 
     while(walker != nullptr) { 
-        Node *temp_node = new Node(walker->getData());
         if(counter != location) { 
-            temp_node->setNext(temp);
-            temp = temp_node;
+            temp_node = new Node(walker->getData());
+            temp_node->setNext(walker->getNext());
         }
+
+        counter++;
+        walker = walker->getNext();
+        
     }
 
-    // delete this->head;
-    head = temp; 
-
-
+    head = temp_node;
 }
-
 

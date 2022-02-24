@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     std::cout << "a location: " << l1->locate("a") << " | c location: " << l1->locate("c") << " | j location: " << l1->locate("j") << std::endl;
 
-    l1->remove(2);
+    l1->remove(0);
     std::cout << l1->toString() << std::endl;
 
     delete l1;

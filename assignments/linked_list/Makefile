@@ -8,4 +8,4 @@ node.o: Node.h Node.cpp
 List.o: List.cpp List.h
 
 clean: 
-	rm -f Node.o main.o 
+	rm -f Node.o main.o List.o

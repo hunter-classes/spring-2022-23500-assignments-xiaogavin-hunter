@@ -18,13 +18,22 @@ int main(int argc, char *argv[]) {
     l1->insert("h");
     l1->insert("i");
 
+    std::cout << l1->toString() << std::endl;
+    std::cout << "a location: " << l1->locate("a") << " | c location: " << l1->locate("c") << " | j location: " << l1->locate("j") << std::endl;
 
+    l1->insert(1, "test");
     std::cout << l1->toString() << std::endl;
 
-    std::cout << "a location: " << l1->locate("a") << " | c location: " << l1->locate("c") << " | j location: " << l1->locate("j") << std::endl;
+    l1->insert(0, "test0");
+    std::cout << l1->toString() << std::endl;
+
+
 
     l1->remove(0);
     std::cout << l1->toString() << std::endl;
+
+    l1->remove(1);
+    std::cout << l1->toString() << std::endl;   
 
     delete l1;
     std::cout << l1->toString() << std::endl;

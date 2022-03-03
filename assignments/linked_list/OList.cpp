@@ -117,5 +117,34 @@ void OList::reverse() {
 }
 
 void OList::remove(int location) { 
-    
+    bool reversed = false;
+    if(head->getData() >= 0) {
+        this->reverse();
+        reversed = true;
+    }
+
+    ONode *walker = head; 
+    ONode *t = nullptr; 
+
+    while(location > 0 && walker) { 
+        t = walker;
+        walker = walker->getNext();
+        location--;
+    }
+
+    if(walker == nullptr) {
+        throw std::out_of_range("Out of bounds");
+    }
+
+    if(!t) { 
+        head = walker->getNext();
+        delete walker;
+    } else { 
+        t->setNext(walker->getNext());
+        delete(walker);
+    }
+
+    if(reversed) { 
+        this->reverse();
+    }
 }

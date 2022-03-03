@@ -37,6 +37,11 @@ int main(int argc, char *argv[]) {
 
     list->reverse();
     std::cout << list->toString() << std::endl;
+    // list->reverse();
+    std::cout << list->toString() << std::endl;
+
+    list->remove(1);
+    std::cout << list->toString() << std::endl;
 
     return 0;
 }

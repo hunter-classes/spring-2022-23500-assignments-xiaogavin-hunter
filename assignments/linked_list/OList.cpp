@@ -6,6 +6,15 @@ OList::OList() {
     this->head = nullptr; 
 }
 
+OList::~OList() { 
+    ONode *trailer;
+    while(head != nullptr) {
+        trailer = head;
+        head = head->getNext();
+        delete trailer;
+    }
+}
+
 void OList::insert(int data) { 
     ONode *walker = head; 
     ONode *trailer = nullptr;
@@ -118,9 +127,11 @@ void OList::reverse() {
 
 void OList::remove(int location) { 
     bool reversed = false;
-    if(head->getData() >= 0) {
-        this->reverse();
-        reversed = true;
+    if(head && head->getNext()) {
+        if(head->getData() >= head->getNext()->getData()) {
+            this->reverse();
+            reversed = true;
+        }
     }
 
     ONode *walker = head; 

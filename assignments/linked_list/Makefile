@@ -1,8 +1,8 @@
 main: List.o Node.o OList.o ONode.o main.o 
 	g++ -o main List.o Node.o OList.o ONode.o main.o
 
-tests: tests.o
-	g++ -o tests tests.o
+tests: tests.o OList.o ONode.o
+	g++ -o tests tests.o OList.o ONode.o
 
 List.o: List.cpp List.h Node.h
 

@@ -12,9 +12,9 @@ int main(int argc, char *argv[]) {
 
     OList *list = new OList();
 
-    list->insert(1);
+    // list->insert(1);
     list->insert(-1);
-    list->insert(0);
+    // list->insert(0);
     list->insert(-5);
     list->insert(4);
     list->insert(2);
@@ -23,8 +23,7 @@ int main(int argc, char *argv[]) {
     list->insert(1);
     list->insert(6);
     list->insert(-4);
-
-    // list->insert(-1);
+    list->insert(-1);
 
     std::cout << list->toString() << std::endl;
 
@@ -37,11 +36,17 @@ int main(int argc, char *argv[]) {
 
     list->reverse();
     std::cout << list->toString() << std::endl;
-    // list->reverse();
-    std::cout << list->toString() << std::endl;
+    list->reverse();
+    // std::cout << list->toString() << std::endl;
 
     list->remove(1);
     std::cout << list->toString() << std::endl;
+
+    // OList *newList = new OList();
+    // newList->remove(-1);
+
+    // List *list = new List();
+    // list->remove(1);
 
     return 0;
 }

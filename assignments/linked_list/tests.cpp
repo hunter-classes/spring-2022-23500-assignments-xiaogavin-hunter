@@ -69,6 +69,20 @@ TEST_CASE("Insert") {
         CHECK(list->toString() == "head ---> -1 ---> -1 ---> -1 ---> 0 ---> 0 ---> 5 ---> 5 ---> 6 ---> 6 ---> null");
         delete list;
     }
+
+    SUBCASE("Special case, reversed list") {
+        OList *list = new OList(); 
+        list->insert(6);
+        list->insert(-1);
+        list->insert(4);
+        list->insert(-5);
+
+        list->reverse();
+        list->insert(100);
+        list->insert(-55000);
+
+        CHECK(list->toString() == "head ---> 100 ---> 6 ---> 4 ---> -1 ---> -5 ---> -55000 ---> null");
+    }
 }
 
 TEST_CASE("toString") {

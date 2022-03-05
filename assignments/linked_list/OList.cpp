@@ -37,8 +37,18 @@ void OList::insert(int data) {
         return;
     }
 
+    bool reversed = false;
+    if(head && head->getNext()) {
+        if(head->getData() >= head->getNext()->getData() && head->getData() != head->getNext()->getData()) {
+            // this->reverse();
+            reversed = true;
+        }
+    }
+
+    // NEED TO FIX WHEN LIST IS REVERSED AND TRYING TO INSERT VALUES INTO THE LIST, INSERTS AT THE INCORRECT PLACE
+
     while(walker) { 
-        if(trailer && trailer->getData() <= data && walker->getData() >= data) {
+        if(trailer && trailer->getData() <= data && walker->getData() >= data || trailer && reversed && trailer->getData() >= data && walker->getData() <= data) {
             trailer->setNext(tmp);
             tmp->setNext(walker);
             return;
@@ -48,9 +58,7 @@ void OList::insert(int data) {
         walker = walker->getNext();
     }
 
-    // std::cout << head->getData();
-
-    if(head->getData() >= data) { 
+    if(reversed && head->getData() <= data || head->getData() >= data && !reversed) { 
         tmp->setNext(head);
         head = tmp;
         return;
@@ -128,7 +136,7 @@ void OList::reverse() {
 void OList::remove(int location) { 
     bool reversed = false;
     if(head && head->getNext()) {
-        if(head->getData() >= head->getNext()->getData()) {
+        if(head->getData() >= head->getNext()->getData() && head->getData() != head->getNext()->getData()) {
             this->reverse();
             reversed = true;
         }

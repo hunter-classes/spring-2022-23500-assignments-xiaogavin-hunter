@@ -112,9 +112,13 @@ int OList::get(int location) {
 }
 
 void OList::reverse() { 
+    if(head == nullptr || head && head->getNext() == nullptr) {
+        throw std::out_of_range("Cannot reverse");
+    }
+
     ONode *walker = head;
     OList *list = new OList();
-    ONode *setter = nullptr; 
+    ONode *setter = nullptr;     
 
     list->insert(walker->getData());
     walker = walker->getNext();
@@ -137,7 +141,6 @@ void OList::remove(int location) {
     bool reversed = false;
     if(head && head->getNext()) {
         if(head->getData() >= head->getNext()->getData() && head->getData() != head->getNext()->getData()) {
-            this->reverse();
             reversed = true;
         }
     }
@@ -151,7 +154,7 @@ void OList::remove(int location) {
         location--;
     }
 
-    if(walker == nullptr) {
+    if(walker == nullptr || location < 0) {
         throw std::out_of_range("Out of bounds");
     }
 
@@ -161,9 +164,5 @@ void OList::remove(int location) {
     } else { 
         t->setNext(walker->getNext());
         delete(walker);
-    }
-
-    if(reversed) { 
-        this->reverse();
     }
 }

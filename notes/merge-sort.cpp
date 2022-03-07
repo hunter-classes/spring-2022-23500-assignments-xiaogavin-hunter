@@ -58,19 +58,19 @@ std::vector<int> merge(std::vector<int> left, std::vector<int> right) {
 
     // your code here
 
-    int left_index = 0;
-    int right_index = 0; 
+    int l_index = 0;
+    int r_index = 0; 
 
     while(merged.size() != left.size() + right.size()) { 
-        if(left[left_index] > right[right_index]) { 
-            merged.push_back(right[right_index]);
-            right_index++;
-        } else if(left[left_index] < right[right_index]) { 
-            merged.push_back(left[left_index]);
-            left_index++;
+        if(left[l_index] > right[r_index]) { 
+            merged.push_back(right[r_index]);
+            r_index++;
+        } else if(left[l_index] < right[r_index]) { 
+            merged.push_back(left[l_index]);
+            l_index++;
         } else {
-            merged.push_back(left[left_index]);
-            left_index++;
+            merged.push_back(left[l_index]);
+            l_index++;
         }
     }
 

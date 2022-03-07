@@ -6,12 +6,11 @@
 #include <sys/time.h>
 #include <math.h>
 
-void print_vector(std::vector<int> a)
-{
-    for (auto i : a)
-    {
+void print_vector(std::vector<int> a) {
+    for (auto i : a) {
         std::cout << i << ", ";
     }
+
     std::cout << "\n";
 }
 
@@ -28,13 +27,12 @@ int find_min_index(std::vector<int> a, int start_index, int stop_index) {
     return min_index;
 }
 
-std::vector<int> ssort(std::vector<int> a)
-{
+std::vector<int> ssort(std::vector<int> a) {
     int i, min_index, j, tmp;
     int len = a.size();
+
     // loop through the vector from 0 to end
-    for (i = 0; i < len; i++)
-    {
+    for (i = 0; i < len; i++) {
         // find the smallest value from i to the end
         min_index = find_min_index(a, i, len);
 
@@ -43,6 +41,7 @@ std::vector<int> ssort(std::vector<int> a)
         a[i] = a[min_index];
         a[min_index] = tmp;
     }
+    
     return a;
 }
 

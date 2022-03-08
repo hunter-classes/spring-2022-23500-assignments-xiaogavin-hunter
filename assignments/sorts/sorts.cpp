@@ -64,13 +64,10 @@ std::vector<int> merge(std::vector<int> left, std::vector<int> right) {
         if(left[l_index] > right[r_index]) { 
             merged.push_back(right[r_index]);
             r_index++;
-        } else if(left[l_index] < right[r_index]) { 
+        } else { 
             merged.push_back(left[l_index]);
             l_index++;
-        } else {
-            merged.push_back(left[l_index]);
-            l_index++;
-        }
+        }  
     }
 
     while(l_index < left.size()) {

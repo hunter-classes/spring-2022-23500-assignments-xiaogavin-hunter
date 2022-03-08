@@ -85,7 +85,6 @@ std::vector<int> merge(std::vector<int> left, std::vector<int> right) {
 
     // remember merged.push_back(n)
     // appends value n to the vector merged
-    print_vector(merged);
     return merged;
 }
 
@@ -102,39 +101,38 @@ std::vector<int> msort(std::vector<int> v) {
         right.push_back(v[i]);
     }
 
-    left = ssort(left);
-    right = ssort(right);
+    if(v.size() < 2) { 
+        return v; 
+    }
 
-    return merge(left, right); 
+    return merge(msort(left), msort(right)); 
 }
 
 int main() {
-    // int size = 102000;
-    // int max_val = 1000;
+    int size = 1000;
+    int max_val = 100;
 
-    // srand(time(nullptr));
-    // std::vector<int> a(size);
-    // int i;
-    // for (i = 0; i < size; i++)
-    // {
-    //     a[i] = rand() % max_val;
-    // }
-    // print_vector(a);
-    // std::cout << "\n";
+    srand(time(nullptr));
+    std::vector<int> a(size);
+    
+    for(int i = 0; i < size; i++) {
+        a[i] = rand() % max_val;
+    }
+
+    print_vector(a);
+    std::cout << "\n";
+
+
     // a = ssort(a);
     // print_vector(a);
-
-    std::vector<int> left = { 1, 2, 5, 6, 10, 15 };
-    std::vector<int> right = { 3, 7, 8, 12, 16, 19, 20 };
-
-    std::vector<int> data = { 1, 4, 3, 2, 5, 7, 10, 8, 6, 9, 11 }; 
-
+    // std::vector<int> left = { 1, 2, 5, 6, 10, 15 };
+    // std::vector<int> right = { 3, 7, 8, 12, 16, 19, 20 };
     // print_vector(left);
     // print_vector(right);
 
     // print_vector(merge(left, right));
 
-    print_vector(msort(data));
+    print_vector(msort(a));
 
     return 0;
 }

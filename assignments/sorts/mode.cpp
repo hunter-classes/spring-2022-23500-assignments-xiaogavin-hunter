@@ -38,7 +38,6 @@ int mode(std::vector<int> v) {
     std::vector<int> num_count; 
     for(int i = 0; i < largest(v) + 1; i++) { 
         num_count.push_back(count(v, i));
-        std::cout << num_count[i] << " ";
     }
 
     std::cout << std::endl;
@@ -54,11 +53,46 @@ int mode(std::vector<int> v) {
     return 0;
 }
 
+void print_vector(std::vector<int> v) { 
+    for(auto a : v) { 
+        std::cout << a << "\n";
+    }
+
+    std::cout << std::endl;
+}
+
+int mode2(std::vector<int> v) {
+    std::vector<int> nums(largest(v) + 1);
+    int large = 0;
+
+    for(int i = 0; i < v.size(); i++) { 
+        nums[v[i]]++;
+
+        if(nums[v[i]] > large) { 
+            large = v[i];
+        }
+    }
+    return large;
+}
+
 
 int main(int argc, char *argv[]) {
-    std::vector<int> nums = { 1, 5, 6, 4, 4, 8, 6, 4, 12, 12, 12, 12, 12, 6, 22 };
+    srand(time(NULL));
+    int size = 10;
+    int max_value = 2;
+    std::vector<int> nums(size);
+
+    for(int i = 0; i < size; i++) { 
+        nums[i] = rand() % max_value;
+    }
+
+
+
     // mode(nums);
-    std::cout << mode(nums) << std::endl;
+    print_vector(nums);
+
+    double solu = mode2(nums) + .1;
+    std::cout << solu << std::endl;
 
     return 0;
 }

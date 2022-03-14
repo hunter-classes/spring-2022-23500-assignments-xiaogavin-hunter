@@ -55,7 +55,7 @@ int mode(std::vector<int> v) {
 
 void print_vector(std::vector<int> v) { 
     for(auto a : v) { 
-        std::cout << a << "\n";
+        std::cout << a << ", ";
     }
 
     std::cout << std::endl;
@@ -68,7 +68,7 @@ int mode2(std::vector<int> v) {
     for(int i = 0; i < v.size(); i++) { 
         nums[v[i]]++;
 
-        if(nums[v[i]] > large) { 
+        if(nums[v[i]] > nums[large]) { 
             large = v[i];
         }
     }
@@ -78,21 +78,18 @@ int mode2(std::vector<int> v) {
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
-    int size = 10;
-    int max_value = 2;
+    int size = 10000000;
+    int max_value = 1000;
     std::vector<int> nums(size);
 
     for(int i = 0; i < size; i++) { 
         nums[i] = rand() % max_value;
     }
 
-
-
     // mode(nums);
-    print_vector(nums);
+    // print_vector(nums);
 
-    double solu = mode2(nums) + .1;
-    std::cout << solu << std::endl;
+    std::cout << mode2(nums) << std::endl;
 
     return 0;
 }

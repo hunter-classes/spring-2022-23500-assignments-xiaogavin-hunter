@@ -106,7 +106,7 @@ std::vector<int> msort(std::vector<int> v) {
 }
 
 int main() {
-    int size = 1000;
+    int size = 10;
     int max_val = 100;
 
     srand(time(nullptr));

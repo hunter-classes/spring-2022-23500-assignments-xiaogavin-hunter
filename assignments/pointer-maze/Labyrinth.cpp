@@ -39,12 +39,5 @@ bool isPathToFreedom(MazeCell* start, const std::string& moves) {
         } 
     }
 
-    if(found_potion && found_spell && found_wand) { 
-        return true;
-    } 
-
-    return false;
-    
+    return found_potion && found_spell && found_wand;
 }
-
-// char item()

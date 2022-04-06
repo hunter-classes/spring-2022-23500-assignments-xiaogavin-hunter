@@ -6,33 +6,38 @@
 #include <sys/time.h>
 #include <math.h>
 
-void print_vector(std::vector<int> a) {
-    for (auto i : a) {
+void print_vector(std::vector<int> a)
+{
+    for (auto i : a)
+    {
         std::cout << i << ", ";
     }
-
     std::cout << "\n";
 }
 
-int find_min_index(std::vector<int> a, int start_index, int stop_index) {
+int find_min_index(std::vector<int> a,
+                   int start_index,
+                   int stop_index)
+{
     int min_index = start_index;
     int i;
-
-    for (i = start_index; i < stop_index; i++) {
-        if (a[i] < a[min_index]) {
+    for (i = start_index; i < stop_index; i++)
+    {
+        if (a[i] < a[min_index])
+        {
             min_index = i;
         }
     }
-
     return min_index;
 }
 
-std::vector<int> ssort(std::vector<int> a) {
+std::vector<int> ssort(std::vector<int> a)
+{
     int i, min_index, j, tmp;
     int len = a.size();
-
     // loop through the vector from 0 to end
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < len; i++)
+    {
         // find the smallest value from i to the end
         min_index = find_min_index(a, i, len);
 
@@ -41,7 +46,6 @@ std::vector<int> ssort(std::vector<int> a) {
         a[i] = a[min_index];
         a[min_index] = tmp;
     }
-    
     return a;
 }
 
@@ -52,84 +56,260 @@ std::vector<int> ssort(std::vector<int> a) {
   elements in left and right, and result
   should be sorted
 */
-std::vector<int> merge(std::vector<int> left, std::vector<int> right) {
+std::vector<int> merge(std::vector<int> left,
+                       std::vector<int> right)
+{
     std::vector<int> merged;
 
     // your code here
+    int l = 0;
+    int r = 0;
 
-    int l_index = 0;
-    int r_index = 0; 
-
-    while(l_index < left.size() &&  r_index < right.size()) { 
-        if(left[l_index] > right[r_index]) { 
-            merged.push_back(right[r_index]);
-            r_index++;
-        } else { 
-            merged.push_back(left[l_index]);
-            l_index++;
-        }  
+    while (l < left.size() &&
+           r < right.size())
+    {
+        if (left[l] < right[r])
+        {
+            merged.push_back(left[l]);
+            l++;
+        }
+        else
+        {
+            merged.push_back(right[r]);
+            r++;
+        }
     }
 
-    while(l_index < left.size()) {
-        merged.push_back(left[l_index]);
-        l_index++;
+    // add any extra elements in left
+    while (l < left.size())
+    {
+        merged.push_back(left[l]);
+        l++;
     }
 
-    while(r_index < right.size()) {
-        merged.push_back(right[r_index]);
-        r_index++;
+    // add any extra elements in right
+    while (r < right.size())
+    {
+        merged.push_back(right[r]);
+        r++;
     }
 
-    // remember merged.push_back(n)
-    // appends value n to the vector merged
     return merged;
 }
 
-std::vector<int> msort(std::vector<int> v) { 
-    // If the list you’re sorting is less than size 2 then just return it.
-    std::vector<int> left; 
-    std::vector<int> right; 
-
-    for(int i = 0; i < v.size() / 2; i++) { 
-        left.push_back(v[i]);
+std::vector<int> msort(std::vector<int> list)
+{
+    // base case
+    // if the list is size 0 or 1 it's sorted
+    // so return it
+    if (list.size() <= 1)
+    {
+        return list;
     }
 
-    for(int i = v.size() / 2; i < v.size(); i++) { 
-        right.push_back(v[i]);
+    // split into two halves (doesn't matter how)
+    int mid = list.size() / 2;
+
+    std::vector<int> a, b;
+
+    int i;
+    for (i = 0; i < mid; i++)
+    {
+        a.push_back(list[i]);
     }
 
-    if(v.size() < 2) { 
-        return v; 
+    for (i = mid; i < list.size(); i++)
+    {
+        b.push_back(list[i]);
     }
 
-    return merge(msort(left), msort(right)); 
+    // recursively msort the two halves
+    a = msort(a);
+    b = msort(b);
+
+    // merge them together
+    list = merge(a, b);
+    return list;
 }
 
-int main() {
-    int size = 10000000;
-    int max_val = 100;
+std::vector<int> qsort(std::vector<int> list)
+{
+
+    int i, j;
+
+    // base case
+    if (list.size() <= 1)
+    {
+        return list;
+    }
+
+    // select a pivot value.
+    // for now, just pick list[0]
+    int pivot = list[0];
+
+    // make 2 new vectors
+    std::vector<int> lower, higher;
+
+    // copy all the values < pivot value to lower
+    // copy all the values >= pivot value to higher;
+    for (i = 1; i < list.size(); i++)
+    {
+        if (list[i] < pivot)
+        {
+            lower.push_back(list[i]);
+        }
+        else
+        {
+            higher.push_back(list[i]);
+        }
+    }
+
+    lower = qsort(lower);
+    higher = qsort(higher);
+
+    // copy everything back into list
+    for (i = 0; i < lower.size(); i++)
+    {
+        list[i] = lower[i];
+    }
+
+    list[i] = pivot;
+    i++;
+
+    for (j = 0; j < higher.size(); j++)
+    {
+        list[i] = higher[j];
+        i++;
+    }
+
+    // return the sorted list
+    return list;
+}
+
+void swap(int* a, int* b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/*
+ * QUICK SORT ALGOR FROM https://www.geeksforgeeks.org/iterative-quick-sort/
+ */
+ 
+/* This function takes last element as pivot,
+   places the pivot element at its correct
+   position in sorted  array, and places
+   all smaller (smaller than pivot) to left
+   of pivot and all greater elements to
+   right of pivot */
+int partition(std::vector<int> &arr, int l, int h)
+{
+    int x = arr[h];
+    int i = (l - 1);
+ 
+    for (int j = l; j <= h - 1; j++) {
+        if (arr[j] <= x) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[h]);
+    return (i + 1);
+}
+ 
+/* A[] --> Array to be sorted,
+l --> Starting index,
+h --> Ending index */
+void qsort2(std::vector<int> &A, int l, int h)
+{
+    if (l < h) {
+        /* Partitioning index */
+        int p = partition(A, l, h);
+        qsort2(A, l, p - 1);
+        qsort2(A, p + 1, h);
+    }
+}
+
+
+void print_help(char *command_name)
+{
+    std::cout << "Usage: " << command_name;
+    std::cout << " [-h|-p|-m N|-s N|-a algorithm]\n\n";
+    std::cout << " -m MAX_ELEMENT_SIZE\n";
+    std::cout << " -s DATA_SET_SIZE\n";
+    std::cout << " -a[s|m]: s - selection, m - merge, q - quicksort, 2 - modified quicksort\n";
+}
+
+extern char *optarg;
+
+int main(int argc, char *argv[]) {
+    int size = 20;     // default vector size
+    int max_val = 100; // default max value for entries
+
+    char algorithm = 's'; // default to selection sort
+    bool print = false;   // do we print before and after sorting?
+    char c;
+
+    while ((c = getopt(argc, argv, "phs:m:a:")) != -1) {
+        switch (c) {
+        case 'h':
+            print_help(argv[0]);
+            exit(0);
+            break;
+        case 'p':
+            print = true;
+            break;
+        case 's':
+            size = std::stoi(optarg);
+            break;
+        case 'm':
+            max_val = std::stoi(optarg);
+            break;
+        case 'a':
+            algorithm = optarg[0]; // or *optarg
+        }
+    }
 
     srand(time(nullptr));
     std::vector<int> a(size);
-    
-    for(int i = 0; i < size; i++) {
+    int i;
+    for (i = 0; i < size; i++) {
         a[i] = rand() % max_val;
+        // a[i] = i;
     }
 
-    print_vector(a);
-    std::cout << "\n";
+    if (print) {
+        print_vector(a);
+        std::cout << "\n";
+    }
 
+    std::cout << "Starting the sort!\n";
+    struct timeval tp;
 
-    // a = ssort(a);
-    // print_vector(a);
-    // std::vector<int> left = { 1, 2, 5, 6, 10, 15 };
-    // std::vector<int> right = { 3, 7, 8, 12, 16, 19, 20 };
-    // print_vector(left);
-    // print_vector(right);
+    gettimeofday(&tp, NULL);
+    long start_time = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 
-    // print_vector(merge(left, right));
+    if (algorithm == 's') {
+        a = ssort(a);
+    } else if (algorithm == 'm') {
+        a = msort(a);
+    } else if (algorithm == 'q') {
+        a = qsort(a);
+    } else if(algorithm == '2') { 
+        qsort2(a, 0, a.size() - 1);
+    }
 
-    print_vector(msort(a));
+    gettimeofday(&tp, NULL);
+    long current_time = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+
+    long elapsed = current_time - start_time;
+
+    if (print) {
+        print_vector(a);
+    }
+    std::cout << "Algorithm: " << algorithm << "\n";
+    std::cout << "Time: " << elapsed << "\n";
 
     return 0;
 }

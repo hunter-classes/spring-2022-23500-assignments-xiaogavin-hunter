@@ -17,8 +17,12 @@ class Stack {
         List *head; 
 
     public:
+        Stack();
+        Stack(std::string item);
+        // ~Stack(); 
+
         // pushes item onto Stack
-        push(std::string item);
+        void push(std::string item);
 
         // removes and returns top item 
         std::string pop();
@@ -30,4 +34,4 @@ class Stack {
         bool is_empty();
 
 
-}
+};

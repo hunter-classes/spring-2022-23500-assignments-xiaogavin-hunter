@@ -14,4 +14,5 @@ class List {
         std::string toString(); 
         int locate(std::string data); 
         void remove(int location);
+        std::string get(); 
 };

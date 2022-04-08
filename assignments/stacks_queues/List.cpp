@@ -146,3 +146,7 @@ void List::remove(int location) {
         delete(walker);
     }
 }
+
+std::string List::get() { 
+    return head->getData();
+}

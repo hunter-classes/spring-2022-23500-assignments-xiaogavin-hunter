@@ -19,7 +19,7 @@ class Stack {
     public:
         Stack();
         Stack(std::string item);
-        // ~Stack(); 
+        ~Stack(); 
 
         // pushes item onto Stack
         void push(std::string item);
@@ -32,6 +32,8 @@ class Stack {
 
         // check to see if the list is empty 
         bool is_empty();
+
+        std::string print();
 
 
 };

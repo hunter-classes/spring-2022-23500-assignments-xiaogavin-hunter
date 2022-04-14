@@ -2,6 +2,7 @@
 
 #define ERR_STACK_EMPTY 1
 #define ERR_STACK_FULL 2
+#define ERR_STACK_OTHER 4 
 
 Stack::Stack() {
     items = 0; 

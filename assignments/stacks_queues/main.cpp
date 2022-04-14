@@ -44,7 +44,42 @@ int main() {
     // std::cout << stk->is_empty() << std::endl;
 
     Queue *queue = new Queue(); 
-
     std::cout << queue->print_debug_str() << std::endl;
+    queue->enqueue(1);
+    std::cout << queue->print_debug_str() << std::endl;
+    queue->enqueue(1);
+    std::cout << queue->print_debug_str() << std::endl;
+    queue->enqueue(1);
+    std::cout << queue->print_debug_str() << std::endl;
+    queue->enqueue(1);
+    std::cout << queue->print_debug_str() << std::endl;
+    queue->enqueue(1);
+    std::cout << queue->print_debug_str() << std::endl;
+    try {
+        queue->enqueue(1);
+        std::cout << queue->print_debug_str() << std::endl;
+    } catch(int e) { 
+        std::cout << "Queue full: Error code: " + std::to_string(e) << std::endl;
+    }
+    try {
+        queue->enqueue(1);
+        std::cout << queue->print_debug_str() << std::endl;
+    } catch(int e) { 
+        std::cout << "Queue full: Error code: " + std::to_string(e) << std::endl;
+    }
+    try {
+        queue->enqueue(1);
+        std::cout << queue->print_debug_str() << std::endl;
+    } catch(int e) { 
+        std::cout << "Queue full: Error code: " + std::to_string(e) << std::endl;
+    }
+    try {
+        queue->enqueue(1);
+        std::cout << queue->print_debug_str() << std::endl;
+    } catch(int e) { 
+        std::cout << "Queue full: Error code: " + std::to_string(e) << std::endl;
+    }
+    
+    
     return 0; 
 }

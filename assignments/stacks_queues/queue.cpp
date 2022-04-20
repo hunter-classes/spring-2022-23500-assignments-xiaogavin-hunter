@@ -8,7 +8,6 @@
 
 Queue::Queue() { 
     this->arr = new int[SIZE];
-    this->start = 0;
     this->end = 0;
 }
 
@@ -16,7 +15,7 @@ std::string Queue::print_debug_str() {
     std::string tmp = "";
     tmp += "Start of arr: " + std::to_string(this->start) + " | End of arr: " + std::to_string(this->end) + "\n";
 
-    for(int i = start; i < end; i++) { 
+    for(int i = 0; i < end; i++) { 
         tmp += std::to_string(arr[i]) + " ";
     }
 
@@ -24,7 +23,7 @@ std::string Queue::print_debug_str() {
 }
 
 void Queue::enqueue(int a) { 
-    if(end - start + 1 > SIZE) { 
+    if(end == SIZE) { 
         throw ERR_QUEUE_FULL;
     }
 
@@ -33,6 +32,12 @@ void Queue::enqueue(int a) {
 }
 
 int Queue::dequeue() {
-    start++;
-    return arr[start - 1];
+    if(end == 0) {
+        throw ERR_QUEUE_EMPTY;
+    }
+
+    int rtn = arr[end - 1]; 
+    end--;
+
+    return rtn;
 }

@@ -17,6 +17,16 @@ std::string stack_string(int total) {
     return tmp; 
 }
 
+std::string queue_string(int total) { 
+    std::string tmp = "start-->";
+    for(int i = 0; i <= total; i++) { 
+        tmp += std::to_string(i) + "-->";
+    }
+
+    tmp += "end";
+    return tmp; 
+}
+
 TEST_CASE("Stack class: push(item)") { 
     Stack *s = new Stack();
     for(int i = 0; i < 5; i++) { 
@@ -70,6 +80,16 @@ TEST_CASE("Stack class: Empty stack") {
     delete s; 
 }
 
-TEST_CASE("Queue class: enqueue") { 
+TEST_CASE("Queue class: Enqueue & Full stack") { 
+    Queue *q = new Queue(); 
+    for(int i = 0; i < 8; i++) {
+        q->enqueue(i);
+        CHECK(q->print_debug_str() == queue_string(i));
+    }
+
+    CHECK_THROWS(q->enqueue(9));
+    CHECK_THROWS(q->enqueue(10));
+
+    delete q; 
     
 }

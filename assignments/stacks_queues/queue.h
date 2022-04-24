@@ -4,7 +4,10 @@ const int SIZE = 8;
 
 class Queue { 
     public:
+        // default constructor no params
         Queue();
+
+        ~Queue();
 
         // Adds item to back of queue
         void enqueue(int a);
@@ -25,5 +28,5 @@ class Queue {
 
     private:
         int *arr;
-        int start, end;
+        int start, end, total_items;
 };

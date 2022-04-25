@@ -8,20 +8,26 @@ void BSTree::insert(int d) {
 
 }
 
-void BSTree::setup() { 
-    Node *n = new Node(10); 
-    this->root = n;
+void BSTree::setup() {
+    Node *n = new Node(10);
+    root = n;
     n = new Node(20);
-    this->root->setLeft(n);
-    n = new Node(30);
-    this->root->setRight(n);
-    n = new Node(40);
-    this->root->getLeft()->setLeft(n);
-
+    root->setRight(n);
+    Node *n2 = new Node(30);
+    n->setRight(n2);
+    n2 = new Node(15);
+    n->setLeft(n2);
+    n2 = new Node(5);
+    root->setLeft(n2);
+    n = new Node(3);
+    n2->setLeft(n);
+    n = new Node(7);
+    n2->setLeft(n);
+ 
 }
 
 std::string transverse(Node *n) { 
-    if(!n) { 
+    if(n) { 
         return std::to_string(n->getData()) + "-->" + transverse(n->getLeft()) + transverse(n->getRight()); 
     } else {
         return "";
@@ -34,10 +40,10 @@ std::string BSTree::get_debug_string() {
     std::string tmp = "";
 
     if(!root) { 
-        return transverse(root);  
+        return "";  
     } else { 
-        tmp = std::to_string(root->getData());
+        tmp = transverse(root);
     }
 
-    return tmp; 
+    return tmp + "nullptr"; 
 }

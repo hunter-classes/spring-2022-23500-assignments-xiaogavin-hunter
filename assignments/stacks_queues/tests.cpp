@@ -80,16 +80,80 @@ TEST_CASE("Stack class: Empty stack") {
     delete s; 
 }
 
-TEST_CASE("Queue class: Enqueue & Full stack") { 
+TEST_CASE("Queue class: Enqueue & Full queue") { 
     Queue *q = new Queue(); 
     for(int i = 0; i < 8; i++) {
         q->enqueue(i);
         CHECK(q->print_debug_str() == queue_string(i));
     }
 
-    CHECK_THROWS(q->enqueue(9));
-    CHECK_THROWS(q->enqueue(10));
+    SUBCASE("Queue is full, should throw") { 
+        CHECK_THROWS(q->enqueue(9));
+        CHECK_THROWS(q->enqueue(10));
+    }
 
     delete q; 
-    
+}
+
+TEST_CASE("Queue class: dequeue & Empty queue") { 
+    Queue *q = new Queue(); 
+
+    for(int i = 0; i < 8; i++) { 
+        q->enqueue(i);
+    }
+
+    for(int i = 0; i < 8; i++) { 
+        CHECK(q->dequeue() == i);
+    }
+
+    SUBCASE("Queue is empty, should throw") { 
+        CHECK_THROWS(q->dequeue());
+        CHECK_THROWS(q->dequeue());
+    }
+
+    delete q;
+}
+
+TEST_CASE("Queue class: front()") {
+    Queue *q = new Queue();
+    q->enqueue(0);
+    CHECK(q->front() == 0);
+
+    for(int i = 1; i < 8; i++) { 
+        q->enqueue(i);
+    } 
+
+    CHECK(q->front() == 0);
+    q->dequeue();
+    CHECK(q->front() == 1);
+
+    for(int i = 0; i < 7; i++) { 
+        q->dequeue();
+    }
+
+    SUBCASE("Empty queue") { 
+        CHECK_THROWS(q->front());
+        CHECK_THROWS(q->front());
+    }
+
+    delete q;
+}
+
+TEST_CASE("Queue class: is_empty and is_full") { 
+    Queue *q = new Queue(); 
+    CHECK(q->is_empty() == true);
+    CHECK(q->is_full() == false);
+
+    q->enqueue(0);
+    CHECK(q->is_empty() == false);
+    CHECK(q->is_full() == false);  
+
+    for(int i = 0; i < 7; i++) { 
+        q->enqueue(i);
+    }
+
+    CHECK(q->is_empty() == false);
+    CHECK(q->is_full() == true);
+
+    delete q;  
 }

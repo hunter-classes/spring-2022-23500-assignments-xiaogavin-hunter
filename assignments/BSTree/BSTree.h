@@ -11,4 +11,5 @@ class BSTree {
         void insert(int d);
         std::string get_debug_string();
         void setup(); 
+        int search(int val);
 };

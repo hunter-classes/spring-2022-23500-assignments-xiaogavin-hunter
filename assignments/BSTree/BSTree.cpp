@@ -22,15 +22,13 @@ void BSTree::setup() {
     n = new Node(3);
     n2->setLeft(n);
     n = new Node(7);
-    n2->setLeft(n);
+    n2->setRight(n);
  
 }
 
 std::string transverse(Node *n) { 
     if(n) { 
-        return std::to_string(n->getData()) + "-->" + transverse(n->getLeft()) + transverse(n->getRight()); 
-    } else {
-        return "";
+        return transverse(n->getLeft()) + std::to_string(n->getData()) + "-->" + transverse(n->getRight()); 
     }
 
     return "";
@@ -47,3 +45,4 @@ std::string BSTree::get_debug_string() {
 
     return tmp + "nullptr"; 
 }
+

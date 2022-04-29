@@ -1,6 +1,7 @@
 #include "BSTree.h"
 
 #define ERR_VAL_NOT_FOUND 1
+#define ERR_VAL_EXISTS 2
 
 BSTree::BSTree() { 
     this->root = nullptr; 
@@ -16,7 +17,7 @@ void BSTree::insert(int d) {
         walker = t; 
 
         if(t->getData() == d) {
-            return;
+            throw ERR_VAL_EXISTS;
         }
 
         if(t->getData() > d) {
@@ -33,6 +34,59 @@ void BSTree::insert(int d) {
     } else {
         walker->setRight(insrt);
     }
+}
+
+void BSTree::rinsert(int d) {
+    Node *head = root; 
+    Node *trailer;
+
+    /* base case */
+    if(!root) {
+        root = new Node(d);
+        return;
+    }
+
+    if(root->getData() == d) {
+        throw ERR_VAL_EXISTS;
+    }
+
+    if(head->getData() > d) {
+        trailer = head;
+        head = head->getLeft(); 
+        rinsert(d, head, trailer);
+    } else {
+        trailer = head;
+        head = head->getRight();
+        rinsert(d, head, trailer);
+    }
+}
+
+void BSTree::rinsert(int d, Node *head, Node *trailer) { 
+    if(!head) {
+        if(trailer->getData() > d) {
+            trailer->setLeft(new Node(d));
+            return;
+        } else {
+            trailer->setRight(new Node(d));
+            return;
+        }
+
+        throw ERR_VAL_EXISTS;
+    }
+
+    Node *next = head; 
+    Node *previous = trailer;
+
+    if(next->getData() > d) {
+        previous = next;
+        next = head->getLeft(); 
+        rinsert(d, next, previous);
+    } else if(next->getData() < d) {
+        previous = next;
+        next = head->getRight();
+        rinsert(d, next, previous);
+    }
+
 }
 
 void BSTree::setup() {

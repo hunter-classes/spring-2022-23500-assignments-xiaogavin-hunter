@@ -51,5 +51,31 @@ int main(int argc, char const *argv[]) {
     std::cout << tree->get_debug_string() << std::endl;
 
 
+    BSTree *tmp = new BSTree();
+    tmp->rinsert(1);
+    tmp->rinsert(5);
+    tmp->rinsert(6);
+    
+    try {
+        tmp->rinsert(7);
+    } catch(int e) {
+        std::cout << "Error val: " << std::to_string(e) << std::endl;
+    }
+
+    try {
+        tmp->rinsert(2);
+    } catch(int e) {
+        std::cout << "Error val: " << std::to_string(e) << std::endl;
+    }
+
+    try {
+        tmp->rinsert(1);
+    } catch(int e) {
+        std::cout << "Error val: " << std::to_string(e) << std::endl;
+    }
+
+    std::cout << tmp->get_debug_string() << std::endl;
+
+
     return 0;
 }

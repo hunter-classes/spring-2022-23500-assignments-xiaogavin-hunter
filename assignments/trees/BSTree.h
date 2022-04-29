@@ -6,6 +6,7 @@ class BSTree {
     private: 
         Node *root; 
         int rsearch(int val, Node *next);
+        void rinsert(int d, Node *head, Node *trailer);
 
     public:
         BSTree();
@@ -13,6 +14,5 @@ class BSTree {
         std::string get_debug_string();
         void setup(); 
         int rsearch(int val);
-        
-
+        void rinsert(int d);
 };

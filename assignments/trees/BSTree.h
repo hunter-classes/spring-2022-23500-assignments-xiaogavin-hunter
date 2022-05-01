@@ -15,4 +15,5 @@ class BSTree {
         void setup(); 
         int rsearch(int val);
         void rinsert(int d);
+        int search(int value);
 };

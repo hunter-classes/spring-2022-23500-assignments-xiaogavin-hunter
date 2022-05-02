@@ -3,119 +3,90 @@
 #define ERR_VAL_NOT_FOUND 1
 #define ERR_VAL_EXISTS 2
 
-BSTree::BSTree()
-{
-    this->root = nullptr;
-}
+BSTree::BSTree() { this->root = nullptr; }
 
-void BSTree::insert(int d)
-{
+void BSTree::insert(int d) {
     Node *t = root;
     Node *walker;
 
     Node *insrt = new Node(d);
 
-    while (t)
-    {
+    while (t) {
         walker = t;
 
-        if (t->getData() == d)
-        {
+        if (t->getData() == d) {
             throw ERR_VAL_EXISTS;
         }
 
-        if (t->getData() > d)
-        {
+        if (t->getData() > d) {
             t = t->getLeft();
-        }
-        else
-        {
+        } else {
             t = t->getRight();
         }
     }
 
-    if (!root)
-    {
+    if (!root) {
         root = insrt;
-    }
-    else if (walker->getData() > d)
-    {
+    } else if (walker->getData() > d) {
         walker->setLeft(insrt);
-    }
-    else
-    {
+    } else {
         walker->setRight(insrt);
     }
 }
 
-void BSTree::rinsert(int d)
-{
+void BSTree::rinsert(int d) {
     Node *head = root;
     Node *trailer;
 
     /* base case */
-    if (!root)
-    {
+    if (!root) {
         root = new Node(d);
         return;
     }
 
-    if (root->getData() == d)
-    {
+    if (root->getData() == d) {
         throw ERR_VAL_EXISTS;
     }
 
-    if (head->getData() > d)
-    {
+    if (head->getData() > d) {
         trailer = head;
         head = head->getLeft();
         rinsert(d, head, trailer);
-    }
-    else
-    {
+    } else {
         trailer = head;
         head = head->getRight();
         rinsert(d, head, trailer);
     }
 }
 
-void BSTree::rinsert(int d, Node *head, Node *trailer)
-{
-    if (!head)
-    {
-        if (trailer->getData() > d)
-        {
-            trailer->setLeft(new Node(d));
-            return;
-        }
-        else
-        {
-            trailer->setRight(new Node(d));
-            return;
-        }
-
-        throw ERR_VAL_EXISTS;
+void BSTree::rinsert(int d, Node *head, Node *trailer) {
+    if (!head) {
+        if (trailer->getData() > d) {
+        trailer->setLeft(new Node(d));
+        return;
+    } else {
+        trailer->setRight(new Node(d));
+        return;
     }
+
+    throw ERR_VAL_EXISTS;
+}
 
     Node *next = head;
     Node *previous = trailer;
 
-    if (next->getData() > d)
-    {
+    if (next->getData() > d) {
         previous = next;
         next = head->getLeft();
         rinsert(d, next, previous);
-    }
-    else if (next->getData() < d)
-    {
+    } else if (next->getData() < d) {
         previous = next;
         next = head->getRight();
         rinsert(d, next, previous);
     }
 }
 
-void BSTree::setup()
-{
+void BSTree::setup() {
     Node *n = new Node(10);
     root = n;
     n = new Node(20);
@@ -132,26 +103,20 @@ void BSTree::setup()
     n2->setRight(n);
 }
 
-std::string transverse(Node *n)
-{
-    if (n)
-    {
+std::string transverse(Node *n) {
+    if (n) {
         return transverse(n->getLeft()) + std::to_string(n->getData()) + "-->" + transverse(n->getRight());
     }
 
     return "";
 }
 
-std::string BSTree::get_debug_string()
-{
+std::string BSTree::get_debug_string() {
     std::string tmp = "";
 
-    if (!root)
-    {
+    if (!root) {
         return "";
-    }
-    else
-    {
+    } else {
         tmp = transverse(root);
     }
 
@@ -166,56 +131,44 @@ std::string BSTree::get_debug_string()
 *
 */
 
-int BSTree::rsearch(int val)
-{
+int BSTree::rsearch(int val) {
     Node *t = root;
 
-    if (!t)
-    {
+    if (!t) {
         throw ERR_VAL_NOT_FOUND;
     }
 
     int tval = t->getData();
 
-    if (val == tval)
-    {
+    if (val == tval) {
         return val;
     }
 
-    if (val > tval)
-    {
+    if (val > tval) {
         return rsearch(val, t->getRight());
-    }
-    else
-    {
+    } else {
         return rsearch(val, t->getLeft());
     }
 
     throw ERR_VAL_NOT_FOUND;
 }
 
-int BSTree::rsearch(int val, Node *next)
-{
+int BSTree::rsearch(int val, Node *next) {
     Node *t = next;
 
-    if (!t)
-    {
+    if (!t) {
         throw ERR_VAL_NOT_FOUND;
     }
 
     int tval = t->getData();
 
-    if (val == tval)
-    {
+    if (val == tval) {
         return val;
     }
 
-    if (val > tval)
-    {
+    if (val > tval) {
         return rsearch(val, t->getRight());
-    }
-    else
-    {
+    } else {
         return rsearch(val, t->getLeft());
     }
 

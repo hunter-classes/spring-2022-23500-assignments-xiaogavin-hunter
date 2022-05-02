@@ -44,37 +44,39 @@ int main(int argc, char const *argv[]) {
     }
 
     
-    tree->insert(5000);
-    std::cout << tree->get_debug_string() << std::endl;
+    // tree->insert(5000);
+    // std::cout << tree->get_debug_string() << std::endl;
 
-    tree->insert(6);
-    std::cout << tree->get_debug_string() << std::endl;
+    // tree->insert(6);
+    // std::cout << tree->get_debug_string() << std::endl;
 
 
-    BSTree *tmp = new BSTree();
-    tmp->rinsert(1);
-    tmp->rinsert(5);
-    tmp->rinsert(6);
+    // BSTree *tmp = new BSTree();
+    // tmp->rinsert(1);
+    // tmp->rinsert(5);
+    // tmp->rinsert(6);
     
-    try {
-        tmp->rinsert(7);
-    } catch(int e) {
-        std::cout << "Error val: " << std::to_string(e) << std::endl;
-    }
+    // try {
+    //     tmp->rinsert(7);
+    // } catch(int e) {
+    //     std::cout << "Error val: " << std::to_string(e) << std::endl;
+    // }
 
-    try {
-        tmp->rinsert(2);
-    } catch(int e) {
-        std::cout << "Error val: " << std::to_string(e) << std::endl;
-    }
+    // try {
+    //     tmp->rinsert(2);
+    // } catch(int e) {
+    //     std::cout << "Error val: " << std::to_string(e) << std::endl;
+    // }
 
-    try {
-        tmp->rinsert(1);
-    } catch(int e) {
-        std::cout << "Error val: " << std::to_string(e) << std::endl;
-    }
+    // try {
+    //     tmp->rinsert(1);
+    // } catch(int e) {
+    //     std::cout << "Error val: " << std::to_string(e) << std::endl;
+    // }
 
-    std::cout << tmp->get_debug_string() << std::endl;
+    // std::cout << tmp->get_debug_string() << std::endl;
+
+    std::cout << tree->treesum() << std::endl;
 
 
     return 0;

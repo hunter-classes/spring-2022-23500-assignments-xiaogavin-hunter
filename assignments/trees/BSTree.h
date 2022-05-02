@@ -7,6 +7,7 @@ class BSTree {
         Node *root; 
         int rsearch(int val, Node *next);
         void rinsert(int d, Node *head, Node *trailer);
+        int treesum(Node *next);
 
     public:
         BSTree();
@@ -16,4 +17,5 @@ class BSTree {
         int rsearch(int val);
         void rinsert(int d);
         int search(int value);
+        int treesum();
 };

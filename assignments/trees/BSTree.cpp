@@ -196,3 +196,15 @@ int BSTree::search(int value) {
 
     throw ERR_VAL_NOT_FOUND;
 }
+
+int BSTree::treesum() { 
+    return treesum(root);
+}
+
+int BSTree::treesum(Node *next) { 
+    if(!next) {
+        return 0;
+    }
+
+    return treesum(next->getLeft()) + next->getData() + treesum(next->getRight());
+}

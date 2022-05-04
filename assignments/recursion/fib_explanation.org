@@ -1,0 +1,3 @@
+* Q. At the end of class we ran fib and saw that once the input got into the 40s, it got REALLY slow where the iterative one was much faster. Think about why this is the case.
+
+A. This had probably occured as recursion runs based off of a stack, since its calling itself over and over again, more memory needs to be used for that call. Additionally, the recursive one was slower as it had to create more data types and data, compared to the iterative one where it had it's data already in main. The iterative one was  faster since it was in main, it only had one stack compared to recursion which had two, the iterative one didn't need more memory nor need to call anything since it was running from main. 

@@ -1,0 +1,21 @@
+Assignment: Run some time tests on the both quicksorts using both a good and a bad pivot. 
+Use a variety of data sets. Also run the mergesort on these data sets. 
+Create a file in this folder named results.md or results.org - 
+this is a text file for markdown or org markdown. In it, describe your results - 
+is one better or worse and under what circumstances or doesn’t it make a differnce. 
+Just a short summary of what you learned is all you’ll need.
+
+1 million items, randomized: 
+Quick-sort bad pivot time: 12474ms
+Quick-sort good pivot time: 4899ms
+Merge-sort time: 2416ms
+
+10000 items, sorted: 
+Quick-sort bad pivot time: 1166ms
+Quick-sort good pivot time: 472ms
+Merge-sort time: 49ms
+
+I've noticed that with the quicksorts and the pivots, having it modify it directly instead of constantly creating a vector 
+drastically decreased the time taken for the sorts with 1 million items. Also with having the pivot in the middle and not at the start for 
+a sorted vector, it took about 1/3 less time compared to having the pivot at the first element in the vector. 
+Overall, for both of the items and sorting, merge sort was still significantly faster compared to quick sorting. 

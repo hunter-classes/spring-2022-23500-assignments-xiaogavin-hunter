@@ -1,10 +1,10 @@
 * Spring 2022 235 Assignments
 
-* Last name:
+* Last name: Xiao
 
-* First name:
+* First name: Gavin
 
-* GitHub username:
+* GitHub username: xiaogavin-hunter
 
 * Notes:
 

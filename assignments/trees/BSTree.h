@@ -18,4 +18,5 @@ class BSTree {
         void rinsert(int d);
         int search(int value);
         int treesum();
+        void remove(int i); 
 };

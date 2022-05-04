@@ -6,6 +6,7 @@
             10
         5         20
     3      7   15     30
+                          40
 */
 
 int main(int argc, char const *argv[]) {

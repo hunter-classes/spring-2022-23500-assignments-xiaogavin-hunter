@@ -1,4 +1,5 @@
 #include "BSTree.h"
+#include <iostream>
 
 #define ERR_VAL_NOT_FOUND 1
 #define ERR_VAL_EXISTS 2
@@ -207,4 +208,60 @@ int BSTree::treesum(Node *next) {
     }
 
     return treesum(next->getLeft()) + next->getData() + treesum(next->getRight());
+}
+
+void BSTree::remove(int i) { 
+    /* 
+     * base case
+     * return when it doesn't exist within tree      
+    */
+
+    try { 
+        rsearch(i);
+    } catch(int e) { 
+        return; 
+    }
+
+    Node *walker = root; 
+    Node *trailer; 
+
+    while(walker) { 
+        if(walker->getData() == i) { 
+            break;
+        }
+
+        trailer = walker; 
+
+        if (walker->getData() < i) {
+            walker = walker->getRight();
+        } else {
+            walker = walker->getLeft();
+        }
+    }
+
+    // Check if its a leaf 
+    if(!walker->getLeft() && !walker->getRight()) {
+        if(trailer->getLeft()) { 
+            trailer->setLeft(nullptr);
+        } else {
+            trailer->setRight(nullptr);
+        }
+
+        delete walker;
+        return;
+    }
+
+    // One child 
+
+    if(walker->getLeft() && !walker->getRight()) {
+        trailer->setLeft(walker->getLeft());
+        delete walker;
+        return;
+    }
+
+    if(!walker->getLeft() && walker->getRight()) {
+        trailer->setRight(walker->getRight());
+        delete walker;
+        return;
+    }
 }

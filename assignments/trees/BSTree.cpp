@@ -247,6 +247,7 @@ void BSTree::remove(int i) {
             trailer->setRight(nullptr);
         }
 
+        walker = nullptr;
         delete walker;
         return;
     }
@@ -255,13 +256,19 @@ void BSTree::remove(int i) {
 
     if(walker->getLeft() && !walker->getRight()) {
         trailer->setLeft(walker->getLeft());
+        walker = nullptr;
         delete walker;
         return;
     }
 
     if(!walker->getLeft() && walker->getRight()) {
         trailer->setRight(walker->getRight());
+        walker = nullptr;
         delete walker;
         return;
     }
+
+    // has two childs 
+
+
 }

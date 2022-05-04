@@ -2,6 +2,12 @@
 #include "Node.h"
 #include "BSTree.h"
 
+/* SETUP TREE 
+            10
+        5         20
+    3      7   15     30
+*/
+
 int main(int argc, char const *argv[]) {
     // Node *root = new Node(10);
     // Node *n2 = new Node(20);
@@ -34,6 +40,7 @@ int main(int argc, char const *argv[]) {
 
     BSTree *tree = new BSTree();
     tree->setup(); 
+    tree->insert(40);
 
     std::cout << tree->get_debug_string() << std::endl;
     
@@ -77,6 +84,10 @@ int main(int argc, char const *argv[]) {
     // std::cout << tmp->get_debug_string() << std::endl;
 
     std::cout << tree->treesum() << std::endl;
+
+    tree->remove(30);
+
+    std::cout << tree->get_debug_string() << std::endl;
 
 
     return 0;

@@ -84,9 +84,9 @@ int main(int argc, char const *argv[]) {
 
     // std::cout << tmp->get_debug_string() << std::endl;
 
-    std::cout << tree->treesum() << std::endl;
+    // std::cout << tree->treesum() << std::endl;
 
-    tree->remove(30);
+    tree->remove(20);
 
     std::cout << tree->get_debug_string() << std::endl;
 

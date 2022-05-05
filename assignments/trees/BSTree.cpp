@@ -219,7 +219,7 @@ void BSTree::remove(int i) {
     try { 
         rsearch(i);
     } catch(int e) { 
-        return; 
+        throw e; 
     }
 
     Node *walker = root; 
@@ -268,7 +268,22 @@ void BSTree::remove(int i) {
         return;
     }
 
-    // has two childs 
+    // has two childs   
+    // 20 | 10 
+    std::cout << walker->getData() << " | " << trailer->getData() << std::endl;
 
+    if(trailer->getRight() == walker) { 
+        // On the right of the tree 
+        trailer->setRight(walker->getRight());
+
+    } else { 
+        // On the left of the tree 
+
+    }
+
+
+
+
+    // delete walker; 
 
 }

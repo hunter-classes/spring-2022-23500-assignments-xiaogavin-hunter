@@ -269,21 +269,22 @@ void BSTree::remove(int i) {
     }
 
     // has two childs   
-    // 20 | 10 
-    std::cout << walker->getData() << " | " << trailer->getData() << std::endl;
+    Node *left = get_leaf(walker); // Node previous of left value that should be replaced 
+    walker->setData(left->getLeft()->getData());
+    left->setLeft(nullptr);
+}
 
-    if(trailer->getRight() == walker) { 
-        // On the right of the tree 
-        trailer->setRight(walker->getRight());
+Node* BSTree::get_leaf(Node *n) { 
+    Node *left; 
 
-    } else { 
-        // On the left of the tree 
+    while(n) { 
+        if(n->getLeft()) {
+            left = n;
+        }
 
-    }
+        n = n->getRight(); 
+    } 
 
-
-
-
-    // delete walker; 
+    return left; 
 
 }

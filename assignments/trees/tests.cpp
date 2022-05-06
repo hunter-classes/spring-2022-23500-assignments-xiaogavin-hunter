@@ -20,6 +20,14 @@ TEST_CASE("Checking to see debug_string") {
         CHECK_THROWS(t->rsearch(155555));
         delete t; 
     }
+
+    SUBCASE("Checking search on empty tree") { 
+        BSTree *empty = new BSTree();
+        CHECK_THROWS(empty->search(100));
+        CHECK_THROWS(empty->rsearch(100));
+
+        delete empty;
+    }
 }
 
 TEST_CASE("remove") { 
@@ -51,6 +59,52 @@ TEST_CASE("remove") {
 
         CHECK(t->get_debug_string() == "3-->5-->7-->10-->15-->20-->40-->nullptr");
         
+        delete t;
+    }
+
+    SUBCASE("Two childs") { 
+        SUBCASE("Test one") { 
+            BSTree *t = new BSTree();
+            t->setup();
+            t->insert(40);
+            t->remove(20);
+
+            CHECK(t->get_debug_string() == "3-->5-->7-->10-->15-->30-->40-->nullptr");
+            
+            delete t;
+        }
+
+        SUBCASE("Test two") { 
+            BSTree *t = new BSTree();
+            t->setup();
+            t->insert(40);
+            t->remove(10);
+
+            CHECK(t->get_debug_string() == "3-->5-->7-->15-->20-->30-->40-->nullptr");
+            
+            delete t;
+        }
+
+        SUBCASE("Test three") { 
+            BSTree *t = new BSTree();
+            t->setup();
+            t->insert(40);
+            t->remove(10);
+            t->remove(20);
+
+            CHECK(t->get_debug_string() == "3-->5-->7-->15-->30-->40-->nullptr");
+            
+            delete t;
+        }
+    }
+
+    SUBCASE("Removing values not within tree") { 
+        BSTree *t = new BSTree();
+        t->setup();
+
+        CHECK_THROWS(t->remove(10812));
+        CHECK_THROWS(t->remove(-100));
+
         delete t;
     }
 }

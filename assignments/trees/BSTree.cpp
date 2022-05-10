@@ -1,8 +1,9 @@
 #include "BSTree.h"
 #include <iostream>
 
-#define ERR_VAL_NOT_FOUND 1
-#define ERR_VAL_EXISTS 2
+#define ERR_OTHER 1
+#define ERR_VAL_NOT_FOUND 2
+#define ERR_VAL_EXISTS 4
 
 BSTree::BSTree() { this->root = nullptr; }
 
@@ -288,3 +289,66 @@ Node* BSTree::get_leaf(Node *n) {
     return left; 
 
 }
+
+int BSTree::count_leaves() {
+    if(!root) { 
+        return 0;
+    } 
+
+    if(!root->getLeft() && !root->getRight()) {
+        return 1; 
+    }
+
+    return count_leaves(root->getLeft()) + count_leaves(root->getRight()); 
+}
+
+int BSTree::count_leaves(Node *n) { 
+    if(!n) {
+        return 0;
+    }
+
+    if(!n->getLeft() && !n->getRight()) { 
+        return 1;
+    }
+
+    return count_leaves(n->getLeft()) + count_leaves(n->getRight());
+}
+
+
+// height of tree: 3
+int BSTree::get_height() { 
+    if(!root) { 
+        return 0; 
+    }
+
+    int left = 1, right = 1; 
+
+    if(root->getLeft()) {
+        left = get_height(root->getLeft(), left + 1);
+    }
+
+    if(root->getRight()) {
+        right = get_height(root->getRight(), right + 1);
+    }
+
+    return left <= right ? right : left;  
+}
+
+int BSTree::get_height(Node *n, int height) { 
+    if(!n->getLeft() && !n->getRight()) { 
+        return height; 
+    }
+
+    int left = 0, right = 0;
+
+    if(n->getLeft()) {
+        left = get_height(n->getLeft(), height + 1);
+    }
+
+    if(n->getRight()) {
+        right = get_height(n->getRight(), height + 1);
+    }
+
+    return left <= right ? right : left;
+}
+

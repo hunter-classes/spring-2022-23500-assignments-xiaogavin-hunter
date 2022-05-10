@@ -30,6 +30,34 @@ TEST_CASE("Checking to see debug_string") {
     }
 }
 
+TEST_CASE("insert") {
+    SUBCASE("Empty tree insert") {
+        BSTree *t = new BSTree();
+        CHECK(t->get_debug_string() == "");
+
+        t->insert(10);
+        CHECK(t->get_debug_string() == "10-->nullptr");
+
+        t->insert(20);
+        CHECK(t->get_debug_string() == "10-->20-->nullptr");
+        
+        t->insert(5);
+        CHECK(t->get_debug_string() == "5-->10-->20-->nullptr");
+
+        delete t;
+    }
+
+    SUBCASE("Repeating elements") {
+        BSTree *t = new BSTree();
+
+        t->insert(10);
+        CHECK(t->get_debug_string() == "10-->nullptr");
+
+        CHECK_THROWS(t->insert(10));
+        delete t;
+    }
+}
+
 TEST_CASE("remove") { 
     SUBCASE("Leafs") {
         BSTree *t = new BSTree();

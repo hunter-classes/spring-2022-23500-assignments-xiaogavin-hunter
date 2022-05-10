@@ -1,6 +1,12 @@
 #pragma once 
 #include "Node.h"
 #include <string>
+#include <vector>
+
+#define ERR_OTHER               1
+#define ERR_VAL_NOT_FOUND       2
+#define ERR_VAL_EXISTS          4
+#define ERR_OUT_OF_BOUNDS       8
 
 class BSTree { 
     private: 

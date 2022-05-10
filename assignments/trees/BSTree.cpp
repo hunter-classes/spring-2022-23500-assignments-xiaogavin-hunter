@@ -1,11 +1,6 @@
 #include "BSTree.h"
 #include <iostream>
 
-#define ERR_OTHER               1
-#define ERR_VAL_NOT_FOUND       2
-#define ERR_VAL_EXISTS          4
-#define ERR_OUT_OF_BOUNDS       8
-
 BSTree::BSTree() { this->root = nullptr; }
 
 void BSTree::insert(int d) {

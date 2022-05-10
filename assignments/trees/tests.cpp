@@ -108,3 +108,81 @@ TEST_CASE("remove") {
         delete t;
     }
 }
+
+TEST_CASE("count_leaves") {
+    SUBCASE("Base tree") {
+        BSTree *t = new BSTree();
+        t->setup();
+        CHECK(t->count_leaves() == 4);
+        t->insert(40);
+        CHECK(t->count_leaves() == 4);
+        delete t;
+    }
+
+    SUBCASE("Empty tree") {
+        BSTree *t = new BSTree();
+        CHECK(t->count_leaves() == 0);
+        delete t;
+    }
+
+    SUBCASE("One side only") {
+        BSTree *t = new BSTree();
+        t->insert(10);
+        t->insert(20);
+        t->insert(30);
+        t->insert(40);
+        t->insert(50);
+
+        CHECK(t->count_leaves() == 1);
+        delete t; 
+    }
+
+    SUBCASE("Two leaves") {
+        BSTree *t = new BSTree();
+        t->insert(10);
+        t->insert(5);
+        t->insert(20);
+
+        CHECK(t->count_leaves() == 2);
+        delete t;
+    }
+}
+
+TEST_CASE("get_height") {
+    SUBCASE("Base tree & inserting element") {
+        BSTree *t = new BSTree();
+        t->setup();
+        CHECK(t->get_height() == 3);
+        t->insert(40);
+        CHECK(t->get_height() == 4);
+        delete t;
+    }
+
+    SUBCASE("Empty tree") {
+        BSTree *t = new BSTree();
+        CHECK(t->get_height() == 0);
+
+        delete t;
+    }
+
+    SUBCASE("Tree with 1 item") {
+        BSTree *t = new BSTree(); 
+        t->insert(1);
+        CHECK(t->get_height() == 1);
+
+        delete t;
+    }
+
+    SUBCASE("Tree with elements only going right") { 
+        BSTree *t = new BSTree(); 
+        t->insert(10);
+        t->insert(20);
+        t->insert(30);
+        t->insert(40);
+        t->insert(50);
+
+        CHECK(t->get_height() == 5);
+
+        delete t; 
+    }
+}

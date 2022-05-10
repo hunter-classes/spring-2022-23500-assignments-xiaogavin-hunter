@@ -1,9 +1,10 @@
 #include "BSTree.h"
 #include <iostream>
 
-#define ERR_OTHER 1
-#define ERR_VAL_NOT_FOUND 2
-#define ERR_VAL_EXISTS 4
+#define ERR_OTHER               1
+#define ERR_VAL_NOT_FOUND       2
+#define ERR_VAL_EXISTS          4
+#define ERR_OUT_OF_BOUNDS       8
 
 BSTree::BSTree() { this->root = nullptr; }
 
@@ -352,3 +353,41 @@ int BSTree::get_height(Node *n, int height) {
     return left <= right ? right : left;
 }
 
+int BSTree::sum_of_given_level(int l) {
+    if(l > this->get_height() || l <= 0) {
+        throw ERR_OUT_OF_BOUNDS;
+    } 
+
+    if(l == 1) {
+        return root->getData();
+    }
+
+    Node *left = root;
+    Node *right = root;
+
+    std::vector<Node*> current_nodes;
+    current_nodes.push_back(root);
+
+    while(l-- != 1) {
+        std::vector<Node*> tmp; 
+        for(auto node : current_nodes) {
+            if(node->getLeft()) {
+                tmp.push_back(node->getLeft());
+            }
+
+            if(node->getRight()) {
+                tmp.push_back(node->getRight());
+            }
+        }
+
+        current_nodes = tmp; 
+    }
+
+    int sum = 0;
+    for(auto node : current_nodes) {
+        sum += node->getData();
+    }
+
+
+    return sum;
+}

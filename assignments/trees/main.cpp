@@ -45,11 +45,11 @@ int main(int argc, char const *argv[]) {
 
     std::cout << tree->get_debug_string() << std::endl;
     
-    try {
-        std::cout << tree->rsearch(1000) << std::endl;
-    } catch(int e) {
-        std::cout << "Value not found" << std::endl;
-    }
+    // try {
+    //     std::cout << tree->rsearch(1000) << std::endl;
+    // } catch(int e) {
+    //     std::cout << "Value not found" << std::endl;
+    // }
 
     
     // tree->insert(5000);
@@ -86,9 +86,28 @@ int main(int argc, char const *argv[]) {
 
     // std::cout << tree->treesum() << std::endl;
 
-    tree->remove(5);
+    // tree->remove(5);
 
-    std::cout << tree->get_debug_string() << std::endl;
+    std::cout << tree->get_height() << std::endl;
+
+    BSTree *small_tree = new BSTree();
+    small_tree->insert(10);
+    small_tree->insert(20);
+
+    std::cout << small_tree->get_debug_string() << std::endl;
+    std::cout << small_tree->get_height() << std::endl;
+
+
+    BSTree *increasing_only_right = new BSTree();
+    increasing_only_right->insert(10);
+    increasing_only_right->insert(20);
+    increasing_only_right->insert(30);
+    increasing_only_right->insert(40);
+    increasing_only_right->insert(50);
+
+    std::cout << increasing_only_right->get_debug_string() << std::endl;
+    std::cout << increasing_only_right->get_height() << std::endl;
+
 
 
     return 0;

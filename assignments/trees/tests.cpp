@@ -186,3 +186,42 @@ TEST_CASE("get_height") {
         delete t; 
     }
 }
+
+TEST_CASE("sum of given levels") {
+    SUBCASE("Base tree") {
+        BSTree *t = new BSTree();
+        t->setup();
+        t->insert(40);
+
+        CHECK(t->sum_of_given_level(1) == 10);
+        CHECK(t->sum_of_given_level(2) == 5 + 20);
+        CHECK(t->sum_of_given_level(3) == 3 + 7 + 15 + 30);
+        CHECK(t->sum_of_given_level(4) == 40);
+        CHECK_THROWS(t->sum_of_given_level(5));
+
+        delete t;
+    }
+
+    SUBCASE("Empty tree") {
+        BSTree *t = new BSTree();
+        CHECK_THROWS(t->sum_of_given_level(1));
+
+        delete t;
+    }
+
+    SUBCASE("Right only tree") {
+        BSTree *t = new BSTree();
+        t->insert(10);
+        t->insert(20);
+        t->insert(30);
+        t->insert(40);
+        t->insert(50);
+
+        CHECK(t->sum_of_given_level(1) == 10);
+        CHECK(t->sum_of_given_level(2) == 20);
+        CHECK(t->sum_of_given_level(3) == 30);
+        CHECK(t->sum_of_given_level(4) == 40);
+        CHECK(t->sum_of_given_level(5) == 50);
+        CHECK_THROWS(t->sum_of_given_level(6));
+    }
+}

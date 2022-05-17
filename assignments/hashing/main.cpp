@@ -20,5 +20,6 @@ int main() {
     std::cout << "\nRetrieving Gavin Xiao from dictionary and printing out id" << std::endl;
     std::cout << dict->retrieve("Gavin", "Xiao")->get_id() << std::endl;
 
+    delete dict;
     return 0;
 }

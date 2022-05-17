@@ -6,6 +6,12 @@ Dictionary::Dictionary() {
     }
 }
 
+Dictionary::~Dictionary() {
+    for(int i = 0; i < 10; i++) { 
+        delete table[i];
+    }
+}
+
 int Dictionary::hash(Person *p) {
     // Hashing for this is last + first leng * 4 % 10
 

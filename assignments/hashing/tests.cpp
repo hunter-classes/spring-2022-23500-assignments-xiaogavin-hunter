@@ -15,17 +15,19 @@ TEST_CASE("hash") {
     // delete dict; 
 }
 
-// TEST_CASE("retrieve") {
-//     Dictionary *dict = new Dictionary(); 
-//     Person *one = new Person("John", "Smith", 1008484);
-//     Person *two = new Person("Mary", "Gray", 1008666);
-//     Person *three = new Person("George", "Brownings", 14884442);
-//     dict->enter(one);
-//     dict->enter(two);
-//     dict->enter(three);
+TEST_CASE("retrieve") {
+    Dictionary *dict = new Dictionary(); 
+    Person *one = new Person("John", "Smith", 1008484);
+    Person *two = new Person("Mary", "Gray", 1008666);
+    Person *three = new Person("George", "Brownings", 14884442);
+    dict->enter(one);
+    dict->enter(two);
+    dict->enter(three);
 
-//     CHECK(dict->retrieve("John", "Smith") == one);
-// }
+    CHECK(dict->retrieve("John", "Smith")->get_id() == one->get_id());
+    CHECK(dict->retrieve("Mary", "Smith") == nullptr);
+    CHECK(dict->retrieve("George", "Brownings")->get_id() == three->get_id());
+}
 
 TEST_CASE("get_keys") {
     Dictionary *dict = new Dictionary();
@@ -37,6 +39,10 @@ TEST_CASE("get_keys") {
     dict->enter(three);
 
     CHECK(dict->getKeys() == "Brownings, George | Gray, Mary | Smith, John | ");
+    
+    dict->enter("Gavin", "Xiao", 2412441);
+    CHECK(dict->getKeys() == "Brownings, George | Gray, Mary | Xiao, Gavin | Smith, John | ");
+
 }
 
 TEST_CASE("enter") {
@@ -53,4 +59,9 @@ TEST_CASE("enter") {
 
     dict->enter(three);
     CHECK(dict->getKeys() == "Brownings, George | Gray, Mary | Smith, John | ");
+
+    dict->enter("Gavin", "Xiao", 2412441);
+    CHECK(dict->getKeys() == "Brownings, George | Gray, Mary | Xiao, Gavin | Smith, John | ");
+
+
 }

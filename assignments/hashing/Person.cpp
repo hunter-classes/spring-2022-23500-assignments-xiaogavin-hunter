@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Person.h"
 
+
+
 Person::Person(std::string first, std::string last, int num){
   this->first = first;
   this->last = last;
@@ -13,13 +15,12 @@ std::string Person::get_name(){
 
 int Person::get_id(){
   return idnum;
-  
 }
 
 std::string Person::get_first() {
-  return this->first;
+  return first;
 }
 
-std::string Person::get_last() { 
-  return this->last;
+std::string Person::get_last() {
+  return last;
 }

@@ -12,7 +12,7 @@ TEST_CASE("hash") {
     CHECK(dict->hash(two) == ((4 + 4) * 4) % 10);
     CHECK(dict->hash(three) == ((6 + 9) * 4) % 10);
 
-    // delete dict; 
+    delete dict; 
 }
 
 TEST_CASE("retrieve") {
@@ -27,6 +27,8 @@ TEST_CASE("retrieve") {
     CHECK(dict->retrieve("John", "Smith")->get_id() == one->get_id());
     CHECK(dict->retrieve("Mary", "Smith") == nullptr);
     CHECK(dict->retrieve("George", "Brownings")->get_id() == three->get_id());
+    
+    delete dict;
 }
 
 TEST_CASE("get_keys") {
@@ -43,6 +45,7 @@ TEST_CASE("get_keys") {
     dict->enter("Gavin", "Xiao", 2412441);
     CHECK(dict->getKeys() == "Brownings, George | Gray, Mary | Xiao, Gavin | Smith, John | ");
 
+    delete dict;
 }
 
 TEST_CASE("enter") {
@@ -63,5 +66,5 @@ TEST_CASE("enter") {
     dict->enter("Gavin", "Xiao", 2412441);
     CHECK(dict->getKeys() == "Brownings, George | Gray, Mary | Xiao, Gavin | Smith, John | ");
 
-
+    delete dict;
 }

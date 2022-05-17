@@ -10,9 +10,15 @@ int main() {
     dict->enter(two);
     dict->enter(three);
 
+    std::cout << "Printing out current dictionary" << std::endl;
     std::cout << dict->getKeys() << std::endl;
 
-    // Brownings, George| \n\nGray, Mary| \n\n\n\nSmith, John\n
+    std::cout << "\nAdded Gavin xiao to dictionary" << std::endl;
+    dict->enter("Gavin", "Xiao", 2412441);
+    std::cout << dict->getKeys() << std::endl;
+
+    std::cout << "\nRetrieving Gavin Xiao from dictionary and printing out id" << std::endl;
+    std::cout << dict->retrieve("Gavin", "Xiao")->get_id() << std::endl;
 
     return 0;
 }
